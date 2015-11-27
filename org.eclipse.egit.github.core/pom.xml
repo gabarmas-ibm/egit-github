@@ -19,6 +19,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ibm.ics.scm.git</groupId>
     <artifactId>org.eclipse.egit.github.core</artifactId>
     <packaging>eclipse-plugin</packaging>
     <name>Eclipse EGit GitHub API Core</name>
