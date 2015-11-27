@@ -84,6 +84,16 @@ public class User implements Serializable {
 	private UserPlan plan;
 
 	/**
+	 * Used for LDAP mapping users in GHE
+	 */
+	private String ldap_dn;
+
+	/**
+	 * Only used in orgs. Descripting
+	 */
+	private String description;
+
+	/**
 	 * @return hireable
 	 */
 	public boolean isHireable() {
@@ -485,5 +495,32 @@ public class User implements Serializable {
 	public User setPlan(UserPlan plan) {
 		this.plan = plan;
 		return this;
+	}
+
+	/**
+	 * Get LDAP mapping in GHE
+	 */
+	public String getLdapMapping(){
+		return ldap_dn;
+	}
+
+	public String setLdapMapping(){
+		throw new UnsupportedOperationException("Setting LDAP Mapping is not implemented");
+	}
+
+	public boolean hasLdapMappin(){
+		return ldap_dn != null;
+	}
+
+	public String getDescription(){
+		return description;
+	}
+
+	public String setDescription(){
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean hasDescription(){
+		return description != null;
 	}
 }

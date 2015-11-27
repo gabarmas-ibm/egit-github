@@ -19,8 +19,6 @@ import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_USERS
 import static org.eclipse.egit.github.core.client.PagedRequest.PAGE_FIRST;
 import static org.eclipse.egit.github.core.client.PagedRequest.PAGE_SIZE;
 
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -30,6 +28,8 @@ import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.client.GitHubRequest;
 import org.eclipse.egit.github.core.client.PageIterator;
 import org.eclipse.egit.github.core.client.PagedRequest;
+
+import com.google.gson.reflect.TypeToken;
 
 /**
  * User service class.
@@ -93,6 +93,31 @@ public class UserService extends GitHubService {
 		request.setUri(SEGMENT_USER);
 		request.setType(User.class);
 		return (User) client.get(request).getBody();
+	}
+
+	public List<User> getUsers() throws IOException {
+		return getAll(pageUsers());
+	}
+
+	protected PageIterator<User> pageUsers() {
+		return pageUsers(PAGE_SIZE);
+	}
+
+	protected PageIterator<User> pageUsers(final int size) {
+		return pageUsers(PAGE_FIRST, size);
+	}
+
+	protected PageIterator<User> pageUsers(final int start, final int size) {
+		PagedRequest<User> request = createUsersRequest(start, size);
+		return createPageIterator(request);
+	}
+
+	protected PagedRequest<User> createUsersRequest(int start, int size) {
+		PagedRequest<User> request = createPagedRequest(start, size);
+		request.setUri(SEGMENT_USERS);
+		request.setType(new TypeToken<List<User>>() {
+		}.getType());
+		return request;
 	}
 
 	/**

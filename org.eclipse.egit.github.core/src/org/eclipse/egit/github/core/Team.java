@@ -32,6 +32,11 @@ public class Team implements Serializable {
 
 	private String url;
 
+	/**LDAP mapping for GHE */
+	private String ldap_dn;
+
+	private String description;
+
 	/**
 	 * @return id
 	 */
@@ -126,6 +131,30 @@ public class Team implements Serializable {
 	public Team setUrl(String url) {
 		this.url = url;
 		return this;
+	}
+
+	public String getLdapMapping(){
+		return ldap_dn;
+	}
+
+	public String setLdapMapping(){
+		throw new UnsupportedOperationException("Setting LDAP Mapping is not implemented");
+	}
+
+	public boolean hasLdapMappin(){
+		return ldap_dn != null;
+	}
+
+	public String getDescription(){
+		return description;
+	}
+
+	public String setDescription(){
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean hasDescription(){
+		return description != null;
 	}
 
 }
