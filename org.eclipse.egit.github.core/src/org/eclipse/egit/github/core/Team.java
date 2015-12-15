@@ -37,6 +37,8 @@ public class Team implements Serializable {
 
 	private String description;
 
+	private User organization;
+
 	/**
 	 * @return id
 	 */
@@ -149,12 +151,11 @@ public class Team implements Serializable {
 		return description;
 	}
 
-	public String setDescription(){
-		throw new UnsupportedOperationException();
-	}
-
 	public boolean hasDescription(){
 		return description != null;
 	}
 
+	public User getOrganization(){
+		return organization;
+	}
 }
