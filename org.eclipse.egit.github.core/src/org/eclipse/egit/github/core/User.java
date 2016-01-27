@@ -93,6 +93,9 @@ public class User implements Serializable {
 	 */
 	private String description;
 
+	private Date suspendedAt;
+
+
 	/**
 	 * @return hireable
 	 */
@@ -523,4 +526,12 @@ public class User implements Serializable {
 	public boolean hasDescription(){
 		return description != null;
 	}
+
+	/**
+	 * Get LDAP mapping in GHE
+	 */
+	public Date getSuspendedAt(){
+		return suspendedAt;
+	}
+
 }
