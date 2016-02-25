@@ -1,4 +1,4 @@
-package jetbrains.charisma.persistent.globalSettings.org.eclipse.egit.github.core;
+package org.eclipse.egit.github.core;
 
 import java.io.Serializable;
 
