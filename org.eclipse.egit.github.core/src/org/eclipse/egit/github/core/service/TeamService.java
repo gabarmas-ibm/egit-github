@@ -18,8 +18,6 @@ import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_ORGS;
 import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_REPOS;
 import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_TEAMS;
 
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +32,8 @@ import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.client.GitHubRequest;
 import org.eclipse.egit.github.core.client.PagedRequest;
 
+import com.google.gson.reflect.TypeToken;
+
 /**
  * Service class for working with organization teams
  *
@@ -41,6 +41,27 @@ import org.eclipse.egit.github.core.client.PagedRequest;
  *      documentation</a>
  */
 public class TeamService extends GitHubService {
+
+	/**
+	 * Role filter key for the new role filter
+	 */
+	public static final String FILTER_ROLE = "role"; //$NON-NLS-1$
+
+	/**
+	 * All team members
+	 */
+	public static final String ROLE_ALL = "all"; //$NON-NLS-1$
+
+	/**
+	 * Normal team members
+	 */
+	public static final String ROLE_MEMBER = "member"; //$NON-NLS-1$
+
+	/**
+	 * Team maintainers
+	 */
+	public static final String ROLE_MAINTAINER = "maintainer"; //$NON-NLS-1$
+
 
 	/**
 	 * Create team service
@@ -175,10 +196,22 @@ public class TeamService extends GitHubService {
 	 * @throws IOException
 	 */
 	public List<User> getMembers(int id) throws IOException {
+		return getMembers(id, null);
+	}
+
+	/**
+	 * Get members of team with given id and filters
+	 *
+	 * @param id
+	 * @return team members
+	 * @throws IOException
+	 */
+	public List<User> getMembers(int id, Map<String, String> filterData) throws IOException {
 		StringBuilder uri = new StringBuilder(SEGMENT_TEAMS);
 		uri.append('/').append(id);
 		uri.append(SEGMENT_MEMBERS);
 		PagedRequest<User> request = createPagedRequest();
+		request.setParams(filterData);
 		request.setUri(uri);
 		request.setType(new TypeToken<List<User>>() {
 		}.getType());

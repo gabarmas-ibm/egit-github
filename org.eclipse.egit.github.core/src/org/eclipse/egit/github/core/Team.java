@@ -143,7 +143,7 @@ public class Team implements Serializable {
 		throw new UnsupportedOperationException("Setting LDAP Mapping is not implemented");
 	}
 
-	public boolean hasLdapMappin(){
+	public boolean hasLdapMapping(){
 		return ldap_dn != null;
 	}
 
