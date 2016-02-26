@@ -82,6 +82,8 @@ public class Repository implements IRepositoryIdProvider, Serializable {
 
 	private User owner;
 
+	private Permissions permissions;
+
 	/**
 	 * @return fork
 	 */
@@ -513,6 +515,22 @@ public class Repository implements IRepositoryIdProvider, Serializable {
 	 */
 	public Repository setOwner(User owner) {
 		this.owner = owner;
+		return this;
+	}
+
+	/**
+	 * @return permissions
+	 */
+	public Permissions getPermissions() {
+		return permissions;
+	}
+
+	/**
+	 * @param permissions
+	 * @return this repository
+	 */
+	public Repository setPermissions(Permissions permissions) {
+		this.permissions = permissions;
 		return this;
 	}
 
