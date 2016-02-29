@@ -1,5 +1,5 @@
 /******************************************************************************
- *  Copyright (c) 2015 IBM Corp.
+ *  Copyright (c) 2016 IBM Corp.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -26,12 +26,12 @@ import org.eclipse.egit.github.core.client.GitHubRequest;
  * @see <a href="https://developer.github.com/v3/enterprise">GitHub Enterprise API
  *      documentation</a>
  */
-public class EnterpriseService extends GitHubService {
+public class AdminService extends GitHubService {
 
 	/**
 	 * Create Enterprise service
 	 */
-	public EnterpriseService() {
+	public AdminService() {
 		super();
 	}
 
@@ -40,7 +40,7 @@ public class EnterpriseService extends GitHubService {
 	 *
 	 * @param client
 	 */
-	public EnterpriseService(GitHubClient client) {
+	public AdminService(GitHubClient client) {
 		super(client);
 	}
 

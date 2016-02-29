@@ -501,14 +501,11 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * Get LDAP mapping in GHE
+	 * GHE only:
+	 * Get LDAP mapping
 	 */
 	public String getLdapMapping(){
 		return ldap_dn;
-	}
-
-	public String setLdapMapping(){
-		throw new UnsupportedOperationException("Setting LDAP Mapping is not implemented");
 	}
 
 	public boolean hasLdapMappin(){
@@ -528,7 +525,8 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * Get LDAP mapping in GHE
+	 * GHE only:
+	 * Get suspendedAt information
 	 */
 	public Date getSuspendedAt(){
 		return suspendedAt;

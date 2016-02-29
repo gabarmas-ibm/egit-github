@@ -187,13 +187,15 @@ public interface IGitHubConstants {
 	/** */
 	String SEGMENT_V3_API = "/api/v3"; //$NON-NLS-1$
 
-	/** Enterprise segments. Only used in Github Enterprise */
+	/** The following are only used in GitHub Enterprise */
 	String SEGMENT_ENTERPRISE = "/enterprise"; //$NON-NLS-1$#
 
 	String SEGMENT_SETTINGS = "/settings"; //$NON-NLS-1$
 
 	String SEGMENT_LICENSE = "/license"; //$NON-NLS-1$
-	/**##*/
+
+	String SEGMENT_ADMIN = "/admin"; //$NON-NLS-1$
+	/**End of GitHub Enterprise segments*/
 
 	/** */
 	String SUBDOMAIN_API = "api"; //$NON-NLS-1$
