@@ -508,7 +508,7 @@ public class User implements Serializable {
 		return ldap_dn;
 	}
 
-	public boolean hasLdapMappin(){
+	public boolean hasLdapMapping(){
 		return ldap_dn != null;
 	}
 

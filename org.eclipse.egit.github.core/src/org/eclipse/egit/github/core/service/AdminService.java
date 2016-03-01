@@ -10,20 +10,22 @@
  *****************************************************************************/
 package org.eclipse.egit.github.core.service;
 
-import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_ENTERPRISE;
-import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_LICENSE;
-import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_SETTINGS;
+import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_ADMIN;
+import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_AUTHORIZATIONS;
+import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_USERS;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 
-import org.eclipse.egit.github.core.License;
+import org.eclipse.egit.github.core.Authorization;
 import org.eclipse.egit.github.core.client.GitHubClient;
-import org.eclipse.egit.github.core.client.GitHubRequest;
 
-/**
- * Enterprise service class
+/**GitHub Enterprise only:
+ * User Administration service class
  *
- * @see <a href="https://developer.github.com/v3/enterprise">GitHub Enterprise API
+ * @see <a href="https://developer.github.com/enterprise/2.4/v3/users/administration/">GitHub Enterprise User
  *      documentation</a>
  */
 public class AdminService extends GitHubService {
@@ -46,15 +48,31 @@ public class AdminService extends GitHubService {
 
 
 	/**
-	 * Get Enterprise License Info
-	 * https://developer.github.com/v3/enterprise/license/
+	 * Create or refresh impersonation token for a given user
+	 *
+	 * @param user User login to impersonate
+	 * @return authorization
+	 * @throws IOException
 	 */
-	public License getLicenseInfo() throws IOException {
-		StringBuilder uri = new StringBuilder(SEGMENT_ENTERPRISE + SEGMENT_SETTINGS + SEGMENT_LICENSE);
-		GitHubRequest request = createRequest();
-		request.setUri(uri);
-		request.setType(License.class);
-		return (License) client.get(request).getBody();
+	public Authorization createImpersonationToken(String user, Collection<String> scopes) throws IOException {
+		StringBuilder uri = new StringBuilder(SEGMENT_ADMIN);
+		uri.append(SEGMENT_USERS).append('/').append(user).append(SEGMENT_AUTHORIZATIONS);
+		Map<String, Collection<String>> params = Collections.singletonMap(
+				"scopes", scopes); //$NON-NLS-1$
+		return (Authorization) client.post(uri.toString(), params, Authorization.class);
+	}
+
+	/**
+	 * Create or refresh impersonation token for a given user
+	 *
+	 * @param id
+	 * @return authorization
+	 * @throws IOException
+	 */
+	public void deleteImpersonationToken(String user) throws IOException {
+		StringBuilder uri = new StringBuilder(SEGMENT_ADMIN);
+		uri.append(SEGMENT_USERS).append('/').append(user).append(SEGMENT_AUTHORIZATIONS);
+		client.delete(uri.toString());
 	}
 
 
