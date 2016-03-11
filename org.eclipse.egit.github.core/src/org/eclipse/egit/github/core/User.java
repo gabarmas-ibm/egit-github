@@ -95,6 +95,10 @@ public class User implements Serializable {
 
 	private Date suspendedAt;
 
+	private Permissions permissions;
+
+	/**
+	private Permissions permissions;
 
 	/**
 	 * @return hireable
@@ -523,6 +527,24 @@ public class User implements Serializable {
 	public boolean hasDescription(){
 		return description != null;
 	}
+
+	/** Permissions are only set if the item was retrieved through
+	 * org.eclipse.egit.github.core.service.CollaboratorService.getCollaborators(IRepositoryIdProvider)
+	 * @return permissions
+	 */
+	public Permissions getPermissions() {
+		return permissions;
+	}
+
+	/**
+	 * @param permissions
+	 * @return this repository
+	 */
+	public User setPermissions(Permissions permissions) {
+		this.permissions = permissions;
+		return this;
+	}
+
 
 	/**
 	 * GHE only:
