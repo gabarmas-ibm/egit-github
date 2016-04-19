@@ -51,7 +51,6 @@ public class SearchService extends GitHubService {
 		StringBuilder uri = new StringBuilder(SEGMENT_SEARCH + SEGMENT_USERS);
 		final String encodedQuery = URLEncoder.encode(query, CHARSET_UTF8);
 		uri.append("?q=").append(encodedQuery);
-		System.out.println(uri);
 		request.setUri(uri);
 		request.setType(UserResults.class);
 		return  (UserResults) client.get(request).getBody();

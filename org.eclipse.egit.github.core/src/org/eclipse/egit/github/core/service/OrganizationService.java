@@ -11,6 +11,7 @@
 package org.eclipse.egit.github.core.service;
 
 import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_MEMBERS;
+import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_MEMBERSHIPS;
 import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_ORGS;
 import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_PUBLIC_MEMBERS;
 import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_USER;
@@ -18,16 +19,17 @@ import static org.eclipse.egit.github.core.client.IGitHubConstants.SEGMENT_USERS
 import static org.eclipse.egit.github.core.client.PagedRequest.PAGE_FIRST;
 import static org.eclipse.egit.github.core.client.PagedRequest.PAGE_SIZE;
 
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.egit.github.core.OrganizationMembership;
 import org.eclipse.egit.github.core.User;
 import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.client.GitHubRequest;
 import org.eclipse.egit.github.core.client.PagedRequest;
+
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Organization service class
@@ -357,5 +359,27 @@ public class OrganizationService extends GitHubService {
 		uri.append(SEGMENT_MEMBERS);
 		uri.append('/').append(user);
 		client.delete(uri.toString());
+	}
+
+
+	public OrganizationMembership addMember(String organization, String user)
+			throws IOException {
+		if (organization == null)
+			throw new IllegalArgumentException("Organization cannot be null"); //$NON-NLS-1$
+		if (organization.length() == 0)
+			throw new IllegalArgumentException("Organization cannot be empty"); //$NON-NLS-1$
+		if (user == null)
+			throw new IllegalArgumentException("User cannot be null"); //$NON-NLS-1$
+		if (user.length() == 0)
+			throw new IllegalArgumentException("User cannot be empty"); //$NON-NLS-1$
+
+		StringBuilder uri = new StringBuilder(SEGMENT_ORGS);
+		uri.append('/').append(organization);
+		uri.append(SEGMENT_MEMBERSHIPS);
+		uri.append('/').append(user);
+
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("role", RoleFilter.member.name());
+		return client.put(uri.toString(), params, OrganizationMembership.class);
 	}
 }
