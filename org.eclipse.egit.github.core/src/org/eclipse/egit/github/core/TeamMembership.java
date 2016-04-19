@@ -24,7 +24,7 @@ public class TeamMembership implements Serializable {
 	 * The possible states of a Team Membership
 	 */
 	public static enum TeamMembershipState {
-		ACTIVE, PENDING;
+		active, pending;
 	}
 
 	private TeamMembershipState state;
