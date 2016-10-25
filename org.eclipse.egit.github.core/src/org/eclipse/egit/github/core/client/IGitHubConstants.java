@@ -187,6 +187,12 @@ public interface IGitHubConstants {
 	/** */
 	String SEGMENT_V3_API = "/api/v3"; //$NON-NLS-1$
 
+	String SEGMENT_NOTIFICATIONS = "/notifications"; //$NON-NLS-1$
+
+	String SEGMENT_THREADS = "/threads"; //$NON-NLS-1$
+
+	String SEGMENT_SUBSCRIPTION = "/subscription"; //$NON-NLS-1$
+
 	/** The following are only used in GitHub Enterprise */
 	String SEGMENT_ENTERPRISE = "/enterprise"; //$NON-NLS-1$#
 
