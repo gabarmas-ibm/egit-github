@@ -67,7 +67,7 @@ public class NotificationService extends GitHubService {
 	/**
 	 * @see <a href="https://developer.github.com/v3/activity/notifications/#set-a-thread-subscription">GitHub Notifications Documentation</a>
 	 */
-	public Subscription setSubscription(long threadId, boolean subscribed, boolean ignored)
+	public Subscription setSubscription(long threadId,  boolean subscribed, boolean ignored)
 			throws IOException {
 		if (threadId <= 0)
 			throw new IllegalArgumentException("Thread ID can't be 0 or negative"); //$NON-NLS-1$
@@ -77,10 +77,9 @@ public class NotificationService extends GitHubService {
 		uri.append('/').append(threadId);
 		uri.append(SEGMENT_SUBSCRIPTION);
 
-		Map<String, Object> params = new HashMap<String, Object>(){{
-			put("subscribed", subscribed); //$NON-NLS-1$
-			put("ignored", ignored); //$NON-NLS-1$
-		}};
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("subscribed", subscribed);
+		params.put("ignored", ignored);
 
 		return (Subscription) client.post(uri.toString(), params, Subscription.class);
 	}
