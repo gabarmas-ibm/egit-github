@@ -26,6 +26,8 @@ public class GitHubImages {
 	private static final String ICONS_PATH = "icons/"; //$NON-NLS-1$
 	private static final String PATH_OBJ = ICONS_PATH + "obj16/"; //$NON-NLS-1$
 
+	private static final String PATH_TOOL = ICONS_PATH + "etool16/"; //$NON-NLS-1$
+
 	private static ImageRegistry manager;
 
 	public static final String GITHUB_LOGO_OBJ = NAME_PREFIX + "OBJ_GITHUB_LOGO"; //$NON-NLS-1$
@@ -38,9 +40,12 @@ public class GitHubImages {
 	public static final ImageDescriptor DESC_GITHUB_LOGO = create(PATH_OBJ, "github.png"); //$NON-NLS-1$
 	public static final ImageDescriptor DESC_GITHUB_ISSUE_LABEL = create(PATH_OBJ, "issue_label.png"); //$NON-NLS-1$
 	public static final ImageDescriptor DESC_GITHUB_ADD = create(PATH_OBJ, "add.png"); //$NON-NLS-1$
-	public static final ImageDescriptor DESC_GITHUB_CHECKALL = create(PATH_OBJ, "checkall.gif"); //$NON-NLS-1$
-	public static final ImageDescriptor DESC_GITHUB_UNCHECKALL = create(PATH_OBJ, "uncheckall.gif"); //$NON-NLS-1$
+	public static final ImageDescriptor DESC_GITHUB_CHECKALL = create(PATH_OBJ, "check_all.png"); //$NON-NLS-1$
+	public static final ImageDescriptor DESC_GITHUB_UNCHECKALL = create(PATH_OBJ, "uncheck_all.png"); //$NON-NLS-1$
 	public static final ImageDescriptor DESC_GITHUB_ORG = create(PATH_OBJ, "org.png"); //$NON-NLS-1$
+
+	public static final ImageDescriptor DESC_PERSON = create(PATH_TOOL, "person.gif"); //$NON-NLS-1$
+	public static final ImageDescriptor DESC_PERSON_ME = create(PATH_TOOL, "person-me.gif"); //$NON-NLS-1$
 
 	private static ImageDescriptor create(String prefix, String name) {
 		return ImageDescriptor.createFromURL(makeImageURL(prefix, name));

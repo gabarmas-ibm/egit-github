@@ -32,7 +32,7 @@ import org.eclipse.ui.internal.WorkbenchImages;
 
 /**
  * Import repositories wizard class.
- * 
+ *
  * @author Kevin Sawicki (kevin@github.com)
  */
 public class TaskRepositoryImportWizard extends Wizard implements IImportWizard {
@@ -48,6 +48,7 @@ public class TaskRepositoryImportWizard extends Wizard implements IImportWizard 
 		setNeedsProgressMonitor(true);
 		setDefaultPageImageDescriptor(WorkbenchImages
 				.getImageDescriptor(IWorkbenchGraphicConstants.IMG_WIZBAN_IMPORT_WIZ));
+		setWindowTitle(org.eclipse.mylyn.internal.github.ui.Messages.TaskRepositoryImportWizard_Title);
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class TaskRepositoryImportWizard extends Wizard implements IImportWizard 
 			repository.setCredentials(AuthenticationType.REPOSITORY,
 					credentials, true);
 			repository.setProperty(IRepositoryConstants.PROPERTY_CATEGORY,
-					IRepositoryConstants.CATEGORY_REVIEW);
+					TaskRepository.CATEGORY_REVIEW);
 			manager.addRepository(repository);
 		}
 		return true;
